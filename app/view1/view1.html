@@ -1,26 +1,40 @@
 Найти:
-<input ng-model="myQuery"><br><br>
-
-Сортировать по:
+<input ng-model="myQuery.$"><br><br> Сортировать по:
 <select ng-model="myOrderProperty">
     <option value="id">ID</option>
+    <option value="name">Имени</option>
     <option value="weight">Весу</option>
+    <option value="-weight">Весу в порядке убывания</option>
     <option value="height">Росту</option>
+</select> Фильтровать по типу:
+<select ng-model="myQuery.type">
+    <option value="normal">Normal</option>
+    <option value="electric">Electric</option>
+    <option value="Water">Water</option>
+    <option value="fire">Fire</option>
+    <option value="ground">Ground</option>
+    <option value="rock">Rock</option>
+    <option value="grass">Grass</option>
+    <option value="poison">Poison</option>
+    <option value="psychic">Psychic</option>
+    <option value="ice">Ice</option>
+    <option value="flying">Flying</option>
+    <option value="bug">Bug</option>
+    <option value="fighting">Fighting</option>
 </select>
 
-<ul>
-    <li ng-repeat="pokemon in pokemons | filter: myQuery | orderBy: myOrderProperty">
-        <img src="{{pokemon.ThumbnailImage}}">
+<ul id="pokemons">
+  <li ng-repeat="pokemon in pokemons | filter: myQuery | orderBy: myOrderProperty">
+    <img ng-click="showPokemon(pokemon.name)" src="{{pokemon.ThumbnailImage}}">
 
-        <small>ID #{{pokemon.id }}</small>
-        <h1>{{pokemon.name}}</h1>
-        <p>Вес: {{pokemon.weight}}, рост: {{pokemon.height}}</p>
-        <p>Тип: {{pokemon.type [0]}}</p>
-        <hr />
-    </li>
+    <small>ID #{{pokemon.id }}</small>
+    <h1 ng-class="{'green':isGreen(pokemon.type[0]), 'blue':isBlue(pokemon.type [0]), 'red':isRed(pokemon.type[0])}">{{pokemon.name}}</h1>
+    <p>Вес: {{pokemon.weight}}, рост: {{pokemon.height}}</p>
+    <p>Тип: {{pokemon.type [0]}}</p>
+    <hr />
+  </li>
 </ul>
 
 <p ng-show="myQuery">
-    Выведены покемоны, содержащие
-    {{myQuery}}
+  Выведены покемоны, содержащие {{myQuery}}
 </p>
