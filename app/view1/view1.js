@@ -122,17 +122,8 @@ angular.module('myApp.view1', ['ngRoute'])
 
   $scope.myOrderProperty = 'id';
 
-  $scope.showPokemon = function(pokemon) {
-    $mdDialog.show(
-      $mdDialog.alert()
-      .parent(angular.element(document.querySelector('#pokemons')))
-      .clickOutsideToClose(true)
-      .title('Pokemon')
-      .textContent(`This is ${pokemon}`)
-      .ariaLabel('Alert Dialog Demo')
-      .ok('Got it!')
-      .targetEvent(ev) //Как это работает я так и не понял
-    );
+  $scope.showPokemon = function(pokemonName) {
+    window.alert(pokemonName);
   }
 
   $scope.isBlue = function(type) {
